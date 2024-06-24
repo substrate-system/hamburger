@@ -31,3 +31,7 @@ Uses `tape-run` for tests in a browser. See [template-ts](https://github.com/nic
   Includes `tap` testing tools -- [tapzero](https://github.com/bicycle-codes/tapzero)
   and [tap-arc](https://www.npmjs.com/package/tap-arc)
 * CI via github actions
+
+## see also
+
+* [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)

@@ -1,0 +1,6 @@
+hamburger-menu {
+    & button {
+        border: none;
+        padding: 0;
+    }
+}
