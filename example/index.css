@@ -10,7 +10,7 @@
     --menu-hover-bgc: var(--purple);
     --menu-hover-color: var(--white);
     --menu-width: 200px;
-    --hamburger-transition: .8s;  /* default is .2s */
+    --hamburger-transition: .2s;  /* default is .2s */
 }
 
 html, body {
