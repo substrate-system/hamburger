@@ -20,6 +20,9 @@ in your HTML.
 
 ## example
 
+* see code in [./example](./example/)
+* [See a live demonstration](https://nichoth.github.io/hamburger/)
+
 ### bundler
 With a bundler such as [vite](https://vitejs.dev/),
 
