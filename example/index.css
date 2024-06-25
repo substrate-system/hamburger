@@ -2,15 +2,15 @@
     --purple: #8E44AD;
     --white: #eee;
     --bright-white: #ffffff;
-    --hamburger-bgc: var(--white);  /* <-- required */
-    --hamburger-color: var(--purple);  /* <-- required */
-    --hamburger-hover-color: var(--bright-white);  /* <-- required */
+    --hamburger-bgc: var(--white);
+    --hamburger-color: var(--purple);
+    --hamburger-hover-color: var(--bright-white);
     --menu-bgc: var(--white);
     --menu-color: var(--purple);
     --menu-hover-bgc: var(--purple);
     --menu-hover-color: var(--white);
     --menu-width: 200px;
-    --hamburger-transition: .8s;
+    --hamburger-transition: .8s;  /* default is .2s */
 }
 
 html, body {

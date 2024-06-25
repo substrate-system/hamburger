@@ -4,25 +4,20 @@ hamburger-menu {
         padding: 0;
     }
 
-    & .menu-bg {
-        background: var(--menu-bgc, white);
-        color: var(--menu-color, black);
-    }
-
     & nav {
         margin-top: 0;
         padding-top: 1rem;
         height: 100vh;
         right: 0;
-        background: var(--white);
-        color: var(--purple);
+        background: var(--menu-bgc, white);
+        color: var(--menu-color, #8E44AD);
         width: var(--menu-width, 200px);
         box-shadow: 0 1px 20px rgba(0,0,0,0.25);
         position: relative;
         z-index: 1;  
         transform: translateX(200px);
         opacity: 0;
-        transition: all var(--hamburger-transition) ease-in-out;
+        transition: all var(--hamburger-transition, .2s) ease-in-out;
         
         & ul {
             list-style: none;
@@ -106,7 +101,7 @@ hamburger-menu {
         width: 28px;
         left: 50%;
         transform: translateX(-50%);
-        background: var(--hamburger-color);
+        background: var(--hamburger-color, black);
         border-radius: 10px;
         transition: all .15s ease;
         

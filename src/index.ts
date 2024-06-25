@@ -62,16 +62,6 @@ export class HamburgerMenu extends HTMLElement {
                 }, 0)
             }
         })
-
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length) {
-                    debug('Node added: ', mutation.addedNodes)
-                }
-            })
-        })
-
-        observer.observe(this, { childList: true })
     }
 }
 

@@ -15,7 +15,6 @@ npm i -S @nichoth/hamburger
 ```
 
 ## use
-
 This is a web component. Just import the JS and CSS, then you can use the tag
 in your HTML.
 
@@ -31,6 +30,45 @@ import '@nichoth/hamburger/style.css'
 
 // import the application CSS, because we are defining some CSS variables
 import './index.css'
+```
+
+### HTML only
+You can use the files in this module directly by linking in your HTML.
+
+First, copy the files to a location accessible to your web server:
+
+#### JS
+```sh
+cp ./node_modules/@nichoth/hamburger/dist/index.min.js ./public/hamburger.js
+```
+
+#### CSS
+```sh
+cp ./node_modules/@nichoth/hamburger/dist/style.min.css ./public/style.css
+```
+
+Then link to them in HTML:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- the style -->
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+</head>
+<body>
+    <!-- use the element -->
+    <hamburger-menu transition=800>
+      <a href="#example">example link</a>
+      <a href="#example">example two</a>
+    </hamburger-menu>
+
+    <!-- the JS -->
+    <script type="module" src="/hamburger.js"></script>
+  </body>
+</html>
 ```
 
 ## API
@@ -61,6 +99,23 @@ corresponds with this HTML:
 
 > !NOTE!
 > 800 milliseconds is 0.8 seconds.
+
+### CSS variables
+Define several CSS variables to customize the appearance.
+
+```css
+:root {
+  --hamburger-bgc: var(--white);
+  --hamburger-color: var(--purple);
+  --hamburger-hover-color: var(--bright-white);
+  --menu-bgc: var(--white);
+  --menu-color: var(--purple);
+  --menu-hover-bgc: var(--purple);
+  --menu-hover-color: var(--white);
+  --menu-width: 200px;
+  --hamburger-transition: .8s;  /* default is .2s */
+}
+```
 
 ## credits
 
