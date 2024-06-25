@@ -103,7 +103,7 @@ corresponds with this HTML:
 </hamburger-menu>
 ```
 
-> !NOTE!
+> [!NOTE]  
 > 800 milliseconds is 0.8 seconds.
 
 ### CSS variables
