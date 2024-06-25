@@ -1,7 +1,25 @@
 import { test } from '@bicycle-codes/tapzero'
-import { example } from '../src/index.js'
+import { dom } from '@bicycle-codes/dom'
+import '../src/index.js'
 
-test('example', async t => {
-    t.ok('ok', 'should be an example')
-    example()
+test('hamburger menu', async t => {
+    t.plan(3)
+    const el = await dom.waitFor('hamburger-menu')
+    t.ok(el, 'should find the hamburger element')
+
+    try {
+        await dom.waitFor({
+            selector: 'nav',
+            visible: true,
+            timeout: 1000
+        })
+    } catch (err) {
+        t.ok((err as Error).message.includes('was not found'),
+            'should not find the nav element before we click')
+    }
+
+    dom.click(el?.querySelector('button') as HTMLButtonElement)
+
+    const nav = await dom.waitFor('nav')
+    t.ok(nav, 'nav element exists after we click')
 })

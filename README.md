@@ -1,37 +1,67 @@
-# template ts browser
-![tests](https://github.com/nichoth/template-ts-browser/actions/workflows/nodejs.yml/badge.svg)
-[![types](https://img.shields.io/npm/types/@nichoth/catch-links?style=flat-square)](README.md)
+# hamnurger
+![tests](https://github.com/nichoth/hamburger/actions/workflows/nodejs.yml/badge.svg)
+[![types](https://img.shields.io/npm/types/@nichoth/hamburger?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
+[![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-A template for typescript *dependency* modules that run in a browser environment.
-Uses `tape-run` for tests in a browser. See [template-ts](https://github.com/nichoth/template-ts) for the same thing but targeting Node.
+A hamburger menu, implemented as a web component.
+
+## install
+
+```sh
+npm i -S @nichoth/hamburger
+```
 
 ## use
-1. Use the template button in github. Or clone this then
-`rm -rf .git && git init`. Then `npm i && npm init`.
 
-2. Edit the source code in `src/index.ts`.
+This is a web component. Just import the JS and CSS, then you can use the tag
+in your HTML.
 
-3. Delete either `.github/workflows/gh-pages-docs.yml` or `.github/workflows/gh-pages.yml`, depending on whether you want to deploy an example or docs to github pages.
+## example
 
-## featuring
+### bundler
+With a bundler such as [vite](https://vitejs.dev/),
 
-* compile the source to both ESM and CJS format, and put compiled files in `dist`.
-* ignore `dist` and `*.js` in git, but don't ignore them in npm. That way we
-  don't commit any compiled code to git, but it is available to consumers.
-* use npm's `prepublishOnly` hook to compile the code before publishing to npm.
-* use [exports](./package.json#L41) field in `package.json` to make sure the right format is used
-  by consumers.
-* `preversion` npm hook -- lint
-* `postversion` npm hook -- `git push --follow-tags && npm publish`
-* eslint -- `npm run lint`
-* tests run in a browser environment via `tape-run` -- see [`npm test`](./package.json#L12).
-  Includes `tap` testing tools -- [tapzero](https://github.com/bicycle-codes/tapzero)
-  and [tap-arc](https://www.npmjs.com/package/tap-arc)
-* CI via github actions
+```js
+// just import, then we can use the tag in HTML
+import '@nichoth/hamburger'
+import '@nichoth/hamburger/style.css'
 
-## see also
+// import the application CSS, because we are defining some CSS variables
+import './index.css'
+```
 
-* [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+## API
+
+### attributes
+
+#### transition
+Take an attribute `transition` to set the time, in milliseconds that it takes
+for the menu to transition in and out of the viewport.
+
+Default is 200ms.
+
+This corresponds to a CSS variable, `--hamburger-transition`, which is the
+transition time as a CSS property. Eg, in CSS,
+```css
+:root {
+  --hamburger-transition: .8s
+}
+```
+
+corresponds with this HTML:
+```html
+<hamburger-menu transition=800>
+  <a href="#example">example link</a>
+  <a href="#example">example two</a>
+</hamburger-menu>
+```
+
+> !NOTE!
+> 800 milliseconds is 0.8 seconds.
+
+## credits
+
+Based on [this codepen page](https://codepen.io/vxdiazdel/pen/wzvNGy).

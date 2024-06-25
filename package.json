@@ -1,4 +1,10 @@
 {
+  "name": "@nichoth/hamburger",
+  "description": "![tests](https://github.com/nichoth/hamburger/actions/workflows/nodejs.yml/badge.svg) [![types](https://img.shields.io/npm/types/@nichoth/hamburger?style=flat-square)](README.md) [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md) [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
   "private": true,
   "type": "module",
   "version": "0.0.0",
@@ -8,34 +14,38 @@
   ],
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
-    "build-tests": "esbuild test/index.ts --target=es2020 --bundle --keep-names > test/test-bundle.js",
+    "build-tests": "esbuild test/index.ts --target=es2020 --bundle --keep-names > test/test-bundle.js && cp ./dist/style.css ./test",
     "test": "npm run lint && npm run build && npm run build-tests && npm run test-tape-run",
     "test-tape-run": "cat test/index.html | tape-run --input=html --static=test | tap-spec",
+    "build-css": "postcss src/index.css --use postcss-nesting > dist/style.css",
+    "build-css:min": "postcss src/index.css --use cssnano postcss-nesting > dist/style.min.css",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
     "build-esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
-    "build-example": "mkdir -p ./public && rm -rf ./public/* && vite build --base=./",
+    "build-esm:min": "esbuild ./src/index.ts --format=esm --keep-names --bundle --tsconfig=tsconfig.build.json --minify --outfile=./dist/index.min.js",
     "build-docs": "typedoc ./src/index.ts",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm",
+    "build-example": "vite --base \"/hamburger/\" build",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
     "start": "vite",
     "preversion": "npm run lint",
     "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@bicycle-codes/tapzero": "^0.10.0",
     "@bicycle-codes/debug": "^0.6.8",
+    "@bicycle-codes/dom": "^0.0.23",
+    "@bicycle-codes/tapzero": "^0.10.3",
     "@preact/preset-vite": "^2.8.2",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
     "auto-changelog": "^2.4.0",
+    "cssnano": "^7.0.3",
     "esbuild": "^0.21.2",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
-    "htm": "^3.1.1",
-    "postcss-nesting": "^12.1.4",
-    "preact": "^10.21.0",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "postcss-nesting": "^12.1.5",
     "tap-spec": "^5.0.0",
     "tape-run": "^11.0.0",
     "typedoc": "^0.26.2",
@@ -47,6 +57,15 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./min": [
+      "./dist/index.min.js"
+    ],
+    "./css": [
+      "./dist/style.css"
+    ],
+    "./css/min": [
+      "./dist/style.min.css"
+    ],
     "./*": {
       "import": [
         "./dist/*.js",
@@ -59,5 +78,19 @@
     }
   },
   "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/hamburger.git"
+  },
+  "keywords": [
+    "hamburger",
+    "menu",
+    "webcomponent"
+  ],
+  "bugs": {
+    "url": "https://github.com/nichoth/hamburger/issues"
+  },
+  "homepage": "https://github.com/nichoth/hamburger#readme"
 }

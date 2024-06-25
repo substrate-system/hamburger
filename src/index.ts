@@ -3,13 +3,17 @@ const debug = createDebug()
 
 export class HamburgerMenu extends HTMLElement {
     isOpen:boolean = false
+    transition:number = 200
 
     constructor () {
         super()
 
-        const isOpen = this.getAttribute('open')
-        if (isOpen) this.isOpen = true
+        const transition = this.getAttribute('transition')
+        if (transition) {
+            this.transition = parseInt(transition)
+        }
 
+        // if it is open, then show a 'close' button
         this.innerHTML = `<button class="hamburger${this.isOpen ? ' close' : ''}">
             <span></span>
             <span></span>
@@ -17,10 +21,10 @@ export class HamburgerMenu extends HTMLElement {
         </button>
 
         <nav>
-            <ul id="nav">
+            <ul>
                 ${Array.from(this.children).filter(Boolean).map(node => {
-                    return node.outerHTML
-                })}
+                    return `<li>${node.outerHTML}</li>`
+                }).join('')}
             </ul>
         </nav>
         `
@@ -32,11 +36,31 @@ export class HamburgerMenu extends HTMLElement {
 
     connectedCallback () {
         debug('connected')
-        this.querySelector('button')?.addEventListener('click', ev => {
+        const btn = this.querySelector('button')
+        btn?.addEventListener('click', ev => {
             ev.preventDefault()
-            debug('click')
-            this.isOpen = !this.isOpen
-            debug('open???', this.isOpen)
+            if (this.isOpen) {
+                // close the menu
+                this.isOpen = false
+                btn.classList.remove('close')
+                const nav = this.querySelector('nav')
+                nav?.classList.remove('visible')
+                // we use the class 'vanish' to set `display: none`,
+                // so it doesn't take up space in the DOM when hidden
+                setTimeout(() => {
+                    nav?.classList.add('vanish')
+                }, this.transition || 200)
+            } else {
+                // open the menu
+                this.isOpen = true
+                btn.classList.add('close')
+                const nav = this.querySelector('nav')
+                nav?.classList.remove('vanish')
+                setTimeout(() => {
+                    // use a new tick so it transitions in
+                    nav?.classList.add('visible')
+                }, 0)
+            }
         })
 
         const observer = new MutationObserver(function (mutations) {
