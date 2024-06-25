@@ -1,4 +1,4 @@
-# hamnurger
+# hamburger
 ![tests](https://github.com/nichoth/hamburger/actions/workflows/nodejs.yml/badge.svg)
 [![types](https://img.shields.io/npm/types/@nichoth/hamburger?style=flat-square)](./dist/index.d.ts)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
