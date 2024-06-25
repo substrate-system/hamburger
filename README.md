@@ -8,6 +8,9 @@
 
 A hamburger menu, implemented as a web component.
 
+![Hamburger button closed](image.png)
+![Hamburger button open](image-1.png)
+
 ## install
 
 ```sh
