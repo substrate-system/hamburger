@@ -41,7 +41,8 @@ import './index.css'
 ### HTML only
 You can use the files in this module directly by linking in your HTML.
 
-First, copy the files to a location accessible to your web server:
+First, copy the files to a location accessible to your web server. This package
+includes minified files.
 
 #### JS
 ```sh
@@ -111,7 +112,7 @@ Define several CSS variables to customize the appearance.
 
 ```css
 :root {
-  --hamburger-bgc: var(--white);
+  --hamburger-bgc: var(--white);  /* hamburger background color */
   --hamburger-color: var(--purple);
   --hamburger-hover-color: var(--bright-white);
   --menu-bgc: var(--white);
