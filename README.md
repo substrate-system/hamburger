@@ -19,6 +19,7 @@ A hamburger menu, implemented as a web component.
   * [bundler](#bundler)
   * [HTML only](#html-only)
 - [API](#api)
+  * [events](#events)
   * [attributes](#attributes)
   * [CSS variables](#css-variables)
 - [credits](#credits)
