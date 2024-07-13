@@ -51,10 +51,8 @@ export class HamburgerMenu extends HTMLElement {
                 btn.classList.remove('close')
                 const nav = this.querySelector('nav')
                 nav?.classList.remove('visible')
-                // we use the class 'vanish' to set `display: none`,
-                // so it doesn't take up space in the DOM when hidden
                 setTimeout(() => {
-                    nav?.classList.add('vanish')
+                    nav!.style.display = 'none'
                 }, this.transition || 200)
 
                 const event = new CustomEvent('close', {
@@ -67,7 +65,8 @@ export class HamburgerMenu extends HTMLElement {
                 this.isOpen = true
                 btn.classList.add('close')
                 const nav = this.querySelector('nav')
-                nav?.classList.remove('vanish')
+                // nav?.classList.remove('vanish')
+                nav!.style.display = 'block'
                 setTimeout(() => {
                     // use a new tick so it transitions in
                     nav?.classList.add('visible')

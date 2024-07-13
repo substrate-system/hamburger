@@ -94,6 +94,21 @@ Then link to them in HTML:
 
 ## API
 
+### events
+Two custom events, `open` and `close`.
+
+```js
+const burger = document.querySelector('hamburger-menu')
+
+burger?.addEventListener('open', ev => {
+  debug('open')
+})
+
+burger?.addEventListener('close', ev => {
+  debug('close')
+})
+```
+
 ### attributes
 
 #### transition
