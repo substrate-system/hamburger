@@ -1,5 +1,5 @@
 {
-  "name": "@nichoth/hamburger",
+  "name": "@substrate-system/hamburger",
   "description": "A hamburger menu, implemented as a web component",
   "directories": {
     "example": "example",
@@ -26,7 +26,8 @@
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-css && npm run build-css:min",
     "start": "vite",
     "preversion": "npm run lint",
-    "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
+    "toc": "markdown-toc --maxdepth 3 -i README.md",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
@@ -41,6 +42,7 @@
     "esbuild": "^0.22.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
+    "markdown-toc": "^1.2.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "postcss-nesting": "^12.1.5",
@@ -80,15 +82,17 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nichoth/hamburger.git"
+    "url": "git+https://github.com/substrate-system/hamburger.git"
   },
   "keywords": [
     "hamburger",
     "menu",
-    "webcomponent"
+    "webcomponent",
+    "mobile",
+    "nav"
   ],
   "bugs": {
-    "url": "https://github.com/nichoth/hamburger/issues"
+    "url": "https://github.com/substrate-system/hamburger/issues"
   },
-  "homepage": "https://github.com/nichoth/hamburger#readme"
+  "homepage": "https://github.com/substrate-system/hamburger"
 }

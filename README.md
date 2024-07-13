@@ -1,6 +1,6 @@
 # hamburger
-![tests](https://github.com/nichoth/hamburger/actions/workflows/nodejs.yml/badge.svg)
-[![types](https://img.shields.io/npm/types/@nichoth/hamburger?style=flat-square)](./dist/index.d.ts)
+![tests](https://github.com/substrate-system/hamburger/actions/workflows/nodejs.yml/badge.svg)
+[![types](https://img.shields.io/npm/types/@substrate-system/hamburger?style=flat-square)](./dist/index.d.ts)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
@@ -11,10 +11,24 @@ A hamburger menu, implemented as a web component.
 ![Hamburger button closed](image.png)
 ![Hamburger button open](image-1.png)
 
+<!-- toc -->
+
+- [install](#install)
+- [use](#use)
+- [example](#example)
+  * [bundler](#bundler)
+  * [HTML only](#html-only)
+- [API](#api)
+  * [attributes](#attributes)
+  * [CSS variables](#css-variables)
+- [credits](#credits)
+
+<!-- tocstop -->
+
 ## install
 
 ```sh
-npm i -S @nichoth/hamburger
+npm i -S @substrate-system/hamburger
 ```
 
 ## use
@@ -24,15 +38,15 @@ in your HTML.
 ## example
 
 * see code in [./example](./example/)
-* [See a live demonstration](https://nichoth.github.io/hamburger/)
+* [See a live demonstration](https://substrate-system.github.io/hamburger/)
 
 ### bundler
 With a bundler such as [vite](https://vitejs.dev/),
 
 ```js
 // just import, then we can use the tag in HTML
-import '@nichoth/hamburger'
-import '@nichoth/hamburger/style.css'
+import '@sustrate-system/hamburger'
+import '@sustrate-system/hamburger/style.css'
 
 // import the application CSS, because we are defining some CSS variables
 import './index.css'
@@ -46,12 +60,12 @@ includes minified files.
 
 #### JS
 ```sh
-cp ./node_modules/@nichoth/hamburger/dist/index.min.js ./public/hamburger.js
+cp ./node_modules/@sustrate-system/hamburger/dist/index.min.js ./public/hamburger.js
 ```
 
 #### CSS
 ```sh
-cp ./node_modules/@nichoth/hamburger/dist/style.min.css ./public/style.css
+cp ./node_modules/@sustrate-system/hamburger/dist/style.min.css ./public/hamburger.css
 ```
 
 Then link to them in HTML:
@@ -60,7 +74,7 @@ Then link to them in HTML:
 <html lang="en">
 <head>
     <!-- the style -->
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/hamburger.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Example</title>
@@ -91,7 +105,7 @@ Default is 200ms.
 This corresponds to a CSS variable, `--hamburger-transition`, which is the
 transition time as a CSS property. Eg, in CSS,
 ```css
-:root {
+hamburger-menu {
   --hamburger-transition: .8s
 }
 ```
@@ -113,14 +127,14 @@ Define several CSS variables to customize the appearance.
 ```css
 :root {
   --hamburger-bgc: var(--white);  /* hamburger background color */
-  --hamburger-color: var(--purple);
-  --hamburger-hover-color: var(--bright-white);
-  --menu-bgc: var(--white);
-  --menu-color: var(--purple);
-  --menu-hover-bgc: var(--purple);
-  --menu-hover-color: var(--white);
+  --hamburger-color: var(--purple); /* hamburger text color */
+  --hamburger-hover-color: var(--bright-white); /* hover state text color */
+  --menu-bgc: var(--white);  /* background color for the expanded menu */
+  --menu-color: var(--purple);  /* text color for expanded menu */
+  --menu-hover-bgc: var(--purple); /* hover background color inside menu */
+  --menu-hover-color: var(--white); /* hover text color inside menu */
   --menu-width: 200px;
-  --hamburger-transition: .8s;  /* default is .2s */
+  --hamburger-transition: .2s;  /* default is .2s */
 }
 ```
 
