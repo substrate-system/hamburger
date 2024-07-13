@@ -1,6 +1,13 @@
 import { createDebug } from '@bicycle-codes/debug'
 const debug = createDebug()
 
+// for docuement.querySelector
+declare global {
+    interface HTMLElementTagNameMap {
+        'hamburger-menu': HamburgerMenu;
+    }
+}
+
 export class HamburgerMenu extends HTMLElement {
     isOpen:boolean = false
     transition:number = 200
@@ -35,7 +42,6 @@ export class HamburgerMenu extends HTMLElement {
     }
 
     connectedCallback () {
-        debug('connected')
         const btn = this.querySelector('button')
         btn?.addEventListener('click', ev => {
             ev.preventDefault()
@@ -50,6 +56,12 @@ export class HamburgerMenu extends HTMLElement {
                 setTimeout(() => {
                     nav?.classList.add('vanish')
                 }, this.transition || 200)
+
+                const event = new CustomEvent('close', {
+                    bubbles: true,
+                    cancelable: true
+                })
+                this.dispatchEvent(event)
             } else {
                 // open the menu
                 this.isOpen = true
@@ -60,6 +72,12 @@ export class HamburgerMenu extends HTMLElement {
                     // use a new tick so it transitions in
                     nav?.classList.add('visible')
                 }, 0)
+
+                const event = new CustomEvent('open', {
+                    bubbles: true,
+                    cancelable: true
+                })
+                this.dispatchEvent(event)
             }
         })
     }
