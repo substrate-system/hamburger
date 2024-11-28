@@ -1,5 +1,5 @@
-import { test } from '@bicycle-codes/tapzero'
-import { dom } from '@bicycle-codes/dom'
+import { test } from '@substrate-system/tapzero'
+import { dom } from '@substrate-system/dom'
 import '../src/index.js'
 
 test('hamburger menu', async t => {
@@ -8,8 +8,7 @@ test('hamburger menu', async t => {
     t.ok(el, 'should find the hamburger element')
 
     try {
-        await dom.waitFor({
-            selector: 'nav',
+        await dom.waitFor('nav', {
             visible: true,
             timeout: 1000
         })
